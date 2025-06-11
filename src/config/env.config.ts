@@ -3,12 +3,19 @@ import * as env from 'dotenv';
 import * as path from 'path';
 
 export default registerAs('envConfig', () => {
-  let nodeEnv = process.env.NODE_ENV;
-  if (nodeEnv == 'prod') {
-    env.config({ path: path.resolve(__dirname, '../../.env.prod') });
-  } else {
-    env.config({ path: path.resolve(__dirname, '../../.env.dev') });
+  const nodeEnv = process.env.NODE_ENV;
+
+  let envPath;
+
+  if (nodeEnv === 'production') {
+    envPath = path.resolve(__dirname, '../../.env.prod');
   }
+  else{
+    envPath = path.resolve(__dirname, '../../.env.dev');
+  }
+
+  env.config({ path: envPath });
+
   return {
     system: {
       node_env: process.env.NODE_ENV,

@@ -9,10 +9,10 @@ import * as path from 'path';
 
 let envPath:string;
 switch (process.env.NODE_ENV) {
-  case '.env.prod':
+  case 'production':
     envPath = path.resolve(__dirname, '../../.env.prod');
     break;
-  case '.env.dev':
+  case 'development':
     envPath = path.resolve(__dirname, '../../.env.dev');
     break;
   default:

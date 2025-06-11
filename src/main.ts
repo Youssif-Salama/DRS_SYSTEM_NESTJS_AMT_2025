@@ -3,9 +3,13 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as dns from 'dns';
 import ResponseFormatInterceptor from './common/interceptors/response.format.interceptor';
 
 async function bootstrap() {
+  // Prefer IPv4 if IPv6 is causing issues
+  dns.setDefaultResultOrder('ipv4first');
+
   const app = await NestFactory.create(AppModule);
  const swaggerConfig = new DocumentBuilder()
     .setTitle('DRS App')

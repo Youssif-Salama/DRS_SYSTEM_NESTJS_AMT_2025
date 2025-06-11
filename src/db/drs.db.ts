@@ -20,6 +20,8 @@ import { AdminEntity } from "src/shared/entities/admins.entity";
           entities:[AdminEntity],
           synchronize: isDevelopment,
           logging: isDevelopment,
+          ssl: !isDevelopment ? { rejectUnauthorized: false } : false,
+
         };
       }
     })
